@@ -5,6 +5,7 @@ TABS.FADE = {
 	activeSlide : 0,
 	currElem : document.querySelectorAll('.info >ul > li')[0],
 	cachedElem : document.querySelectorAll('.info >ul > li')[0],
+	tabList : document.querySelectorAll('.tabs >ul> li > a'),
 
     init: function()
     {
@@ -25,10 +26,20 @@ TABS.FADE = {
 		document.querySelector('.info >ul > li:first-child').style.display = 'block';
 			 
 		//add click event to all tabs
-		for(i=0;i<4;i++){
+		
+		for(i=0;i<document.querySelectorAll('.tabs a').length;i++){
 		  document.querySelectorAll('.tabs a')[i].onclick=that.fadeContent;
 		}
+		/*that.forEachElm(document.querySelectorAll('.tabs a'),function(){
+			console.log('this in forEachElm: '+this);
+		});*/
     },
+	
+	forEachElm: function(elem,func){
+		for(i=0;i<elem.length;i++){
+			func();
+		}
+	},
 		
 	fadeContent: function(e)
 	{
@@ -46,34 +57,9 @@ TABS.FADE = {
 		 
 		 //add active to tab clicked
 		 that.addclass(this,'active');
-		 
-		 //remove active from all info mods
-		 for(i=0;i<that.infoList.length;i++){
-			if ( document.querySelectorAll('.info >ul > li')[i].className.match(/(?:^|\s)active(?!\S)/) ){
-				that.removeclass(document.querySelectorAll('.info >ul > li')[i],'active');
-			}
-		 }
-		 
-		 var currIndex = that.currElem.getAttribute('id');
-		 
-		 console.log('currIndex: '+currIndex);
-		 
-		 //add active to current info mod
-		 document.querySelectorAll('.info >ul > li')[currIndex].className += " active";
-	
-		 //hide all content 		
-		 for(i=0;i<that.infoList.length;i++){
-		  document.querySelectorAll('.info >ul > li')[i].style.opacity = 0;
-		 }
 		
 		//pass the current tab element to the animateFade method
-		 that.animateFade(document.querySelectorAll('.tabs >ul > li')[thisTab - 1]);
-		 
-		
-		 for(i=0;i<that.infoList.length;i++){
-			if ( document.querySelectorAll('.info >ul > li')[i].className.match(/(?:^|\s)active(?!\S)/) ){
-			}
-		 }		 
+		 that.animateFade(document.querySelectorAll('.tabs >ul > li')[thisTab - 1]); 
 	},
 		
 	animateFade: function(elem) {
@@ -87,13 +73,10 @@ TABS.FADE = {
 		that.cachedElem = elem;
 			
 		// unhide this slide 		
-		elem.style.display = 'block'
-		
-		
+		elem.style.display = 'block';	
 		
 	  var opacityUp = 0,
-	      opacityDown = 1,
-	  	  activeSlide = thisSlide;
+	      opacityDown = 1;
       
 	  // animate opacity from current slide from 0 to 1	
 	  function fade(fadeElem, cachedElem) {
@@ -107,10 +90,11 @@ TABS.FADE = {
 		if (opacityUp.toFixed(2) == 1.00)  
 		  {
 			  clearInterval(opct);
+			  lastElem.style.display = 'none';
 		  }		  
-	  }// end frame function	  
+	  }// end fade function	  
 	
-	  var opct = setInterval(function(){console.log('setInt called'); fade(elem,that.cachedElem);}, 10);
+	  var opct = setInterval(function(){fade(elem,that.cachedElem);}, 10);
 	},
 	
 	addclass : function(elm,newclass){
