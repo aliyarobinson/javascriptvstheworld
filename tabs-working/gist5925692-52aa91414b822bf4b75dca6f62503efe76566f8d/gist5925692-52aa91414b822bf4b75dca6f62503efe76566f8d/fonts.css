@@ -1,0 +1,23 @@
+@font-face {
+    font-family: 'district_prothin';
+    src: url('http://aliyayrobinson.com/webfonts/distproth-webfont.eot');
+    src: url('http://aliyayrobinson.com/webfonts/distproth-webfont.eot?#iefix') format('embedded-opentype'),
+         url('http://aliyayrobinson.com/webfonts/distproth-webfont.woff') format('woff'),
+         url('http://aliyayrobinson.com/webfonts/distproth-webfont.ttf') format('truetype'),
+         url('http://aliyayrobinson.com/webfonts/distproth-webfont.svg#district_prothin') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'bonvenocflight';
+    src: url('http://aliyayrobinson.com/webfonts/bonvenocf-light-webfont.eot');
+    src: url('http://aliyayrobinson.com/webfonts/bonvenocf-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('http://aliyayrobinson.com/webfonts/bonvenocf-light-webfont.woff') format('woff'),
+         url('http://aliyayrobinson.com/webfonts/bonvenocf-light-webfont.ttf') format('truetype'),
+         url('http://aliyayrobinson.com/webfonts/bonvenocf-light-webfont.svg#bonvenocflight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
